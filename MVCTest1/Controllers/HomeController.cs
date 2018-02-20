@@ -13,11 +13,17 @@ namespace MVCTest1.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult About(string id)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            switch (id)
+            {
+                case "yahoo":
+                    return Redirect("http://www.yahoo.com/");
+                case "google":
+                    return Redirect("http://www.google.com/");
+                default:
+                    return View();
+            }
         }
 
         public ActionResult Contact()
