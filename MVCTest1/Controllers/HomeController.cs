@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVCTest1.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,11 +11,26 @@ namespace MVCTest1.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var db = new DBConnectionContext();
+            var employee = new Employee
+            {
+                ID = Guid.NewGuid(),
+                FirstName = "Sam",
+                LastName = "Blah",
+                Address = "Pyrmont"
+            };
+
+            db.Employees.Add(employee);
+            db.SaveChanges();
+
+            var test = db.Employees.ToList();
+
+            return View(test);
         }
 
         public ActionResult About(string id)
         {
+
             switch (id)
             {
                 case "yahoo":

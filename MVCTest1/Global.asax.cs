@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Web.WebPages;
 
 namespace MVCTest1
 {
@@ -19,6 +20,30 @@ namespace MVCTest1
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             FluentValidationModelValidatorProvider.Configure();
+
+            DisplayModeProvider.Instance.Modes.Insert(1, new DefaultDisplayMode("WP")
+            {
+                ContextCondition = (ctx => ctx.GetOverriddenUserAgent()
+                .IndexOf("Windows Phone OS", StringComparison.OrdinalIgnoreCase) > 0)
+            });
+
+
+            DisplayModeProvider.Instance.Modes.Insert(1, new DefaultDisplayMode("iPhone")
+            {
+                ContextCondition = (ctx => ctx.GetOverriddenUserAgent()
+                .IndexOf("iPhone", StringComparison.OrdinalIgnoreCase) > 0)
+            });
+
+
+            DisplayModeProvider.Instance.Modes.Insert(1, new DefaultDisplayMode("Android")
+            {
+                ContextCondition = (ctx => ctx.GetOverriddenUserAgent()
+                .IndexOf("Android", StringComparison.OrdinalIgnoreCase) > 0)
+            });
+
+
+
+
         }
     }
 }
