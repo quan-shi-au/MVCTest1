@@ -68,5 +68,25 @@ namespace MVCTest1.Controllers
                 return View();
             }
         }
+
+        public ActionResult CreateWithStudent()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateWithStudent(Student student)
+        {
+            try
+            {
+                studentsList.Add(student);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
     }
 }
