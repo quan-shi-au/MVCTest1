@@ -1,4 +1,6 @@
 ﻿using FluentValidation.Mvc;
+using MVCTest1.ModelBinders;
+using MVCTest1.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,8 +43,7 @@ namespace MVCTest1
                 .IndexOf("Android", StringComparison.OrdinalIgnoreCase) > 0)
             });
 
-
-
+            System.Web.Mvc.ModelBinders.Binders.Add(typeof(Student), new StudentModelBinder());
 
         }
     }

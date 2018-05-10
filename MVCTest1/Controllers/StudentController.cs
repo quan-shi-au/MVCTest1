@@ -1,4 +1,5 @@
-﻿using MVCTest1.Models;
+﻿using MVCTest1.ModelBinders;
+using MVCTest1.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -75,7 +76,7 @@ namespace MVCTest1.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateWithStudent(Student student)
+        public ActionResult CreateWithStudent([ModelBinder(typeof(StudentModelBinder))]Student student)
         {
             try
             {
